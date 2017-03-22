@@ -77,8 +77,18 @@ public class WordLists {
 
 	
 	private String reverse(String s) {
-	    // define!
-		return s;
+		String out = "";
+		String[] reversed = s.split("");
+		//System.out.println(reversed.length);
+		if (reversed.length > 1){
+			for(int i = reversed.length-1; i>=0; i--){
+				out+=reversed[i];
+			}
+		}else {
+			out +=reversed[0];
+		}
+
+		return out;
 	}
 	
 	private void computeWordFrequencies() {
@@ -94,7 +104,6 @@ public class WordLists {
 		}
 
 	}
-	
 
 	private void computeFrequencyMap() {
 		TreeMap<Integer, TreeSet<String>> frequencyMap = new TreeMap<>((o1, o2) -> o1 > o2 ? -1: o1 < o2 ? 1: 0);
@@ -122,7 +131,20 @@ public class WordLists {
 	
 
 	private void computeBackwardsOrder() {
+		TreeSet<String> reversedString = new TreeSet<>();
 
+		try{
+			BufferedWriter outStream = new BufferedWriter(new PrintWriter("backwardsSorted.txt"));
+			for(String s: textMap.keySet()){
+				reversedString.add(reverse(s));
+			}
+			for(String s: reversedString){
+				outStream.write(reverse(s) + "\n");
+			}
+			outStream.close();
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) throws IOException {
