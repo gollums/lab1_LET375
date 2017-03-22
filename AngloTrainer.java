@@ -2,91 +2,79 @@
 // Email:	
 // Date:	
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class AngloTrainer {
+	// ...
 	private Set wordList;
 	private Random randomGenerator;
-	private int longestWord;
+	private int maxLength;
+	private int numberOfWords;
+	private String randLetters;
 
 	public AngloTrainer(String dictionaryFile) throws IOException {
-
 		wordList = new TreeSet();
 		randomGenerator = new Random();
-		longestWord = 0;
+		maxLength = 0;
+		numberOfWords = 0;
 
 		loadDictionary(dictionaryFile);
-		System.out.println(wordList.size());
-		dumpDict();
+		randLetters = randomLetters(maxLength);
+		output();
+		userInput();
 
+		// ... define!
 	}
 
 	// use this to verify loadDictionary
 	private void dumpDict() {
-	    // Print out the dictionary at the screen.
-		Iterator <String> setIterator = wordList.iterator();
-		String s = randomLetters(longestWord);
-		System.out.println(s);
-		while (setIterator.hasNext()){
-			if(includes(setIterator.next(),s)){
-				System.out.println("herå");
-			}
 
+		Iterator<String> setIterator = wordList.iterator();
+
+		while(setIterator.hasNext()){
+			System.out.println(setIterator.next());
 		}
+		// Print out the dictionary at the screen.
+		// ... define!
 	}
 
-	/**
-	 * todo: define
-	 * @param fileName
-	 */
 	private void loadDictionary( String fileName ) {
-	    // Read the dictionary into a suitable container.
-	    // The file is a simple text file. One word per line.
-		String length;
+		String word;
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
-			String word;
-			while (true){
-				word =  bufferedReader.readLine();
-				if (word == null) {
+			BufferedReader inStream = new BufferedReader(new FileReader(fileName));
+			while (true) {
+				word = inStream.readLine();
+				if(word == null) {
 					break;
 				}
-				else {
-					wordList.add(word);
-
-					length = word;
-					if (length.length() > longestWord) {
-						longestWord = length.length();
-					}
-				}
+				wordList.add(word);
+				if(word.length() > maxLength)
+					maxLength = word.length();
+				numberOfWords++;
 			}
-		} catch (FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private String randomLetters( int length ) {
-	    // this makes vovels a little more likely
-	    String letters = "aabcdeefghiijklmnoopqrstuuvwxyyz";  
-	    StringBuffer buf = new StringBuffer(length);
-	    for ( int i = 0; i < length; i++ ) 
-		    buf.append( letters.charAt(randomGenerator.nextInt(letters.length())));
-	
-	    return buf.toString();
+		// this makes vovels a little more likely
+		String letters = "aabcdeefghiijklmnoopqrstuuvwxyyz";
+		StringBuffer buf = new StringBuffer(length);
+		for ( int i = 0; i < length; i++ )
+			buf.append( letters.charAt(randomGenerator.nextInt(letters.length())));
+
+		return buf.toString();
 	}
-	
-	
+
+
 	/* Def. includes
 	 * Let #(x,s) = the number of occurrences of the charcter x in the string s.
 	 * includes(a,b) holds iff for every character x in b, #(x,b) <= #(x,a)
-	 * 
+	 *
 	 * A neccessary precondition for includes is that both strings are sorted
 	 * in ascending order.
 	 */
@@ -95,7 +83,7 @@ public class AngloTrainer {
 			return true;
 		else if ( a == null || a.length() == 0 )
 			return false;
-		
+
 		//precondition: a.length() > 0 && b.length() > 0
 		int i = 0, j = 0;
 		while ( j < b.length() ) {
@@ -109,9 +97,38 @@ public class AngloTrainer {
 		//postcondition: j == b.length()
 		return true;
 	}
-	
-     // This is just for demonstration purposes.
-	private void testIncludes() { 
+
+	private String sort(String s){
+		String[] toBeSorted = s.split("");
+		Arrays.sort(toBeSorted);
+
+		return Arrays.toString(toBeSorted);
+	}
+
+	private void userInput(){
+		Scanner inputScanner = new Scanner(System.in);
+		while(true){
+			String inputString = inputScanner.nextLine();
+			String sortedRandLetters;
+			sortedRandLetters = sort(randLetters);
+			System.out.println(sortedRandLetters);
+			if(includes(sortedRandLetters, inputString) && wordList.contains(inputString)) {
+				System.out.println("Ok!");
+			} else {
+
+				break;
+			}
+		}
+	}
+
+	private void output(){
+		System.out.println(numberOfWords + " words loaded from dictionary.txt\n");
+		System.out.println("The random letters are: " + randLetters + "\n");
+		System.out.println("Try to build as many words from these letters as you can!\n");
+	}
+
+	// This is just for demonstration purposes.
+	private void testIncludes() {
 		//                                            expected value
 		System.out.println(includes("abc",""));		//t
 		System.out.println(includes("","abc"));		//f
@@ -138,23 +155,8 @@ public class AngloTrainer {
 		System.out.println(includes("abc",null));   //t
 	}
 
-    public static void main(String[] args) {
-		try {
-			new AngloTrainer("/Users/gollum/Documents/Programing/Java_Dev/LET375/lab1/dictionary.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws IOException {
+		new AngloTrainer("/home/nightmare/IdeaProjects/AlgorythmAndDataStructuresLab1/src/dictionary.txt");
+		// ... define!
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
