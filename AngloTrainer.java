@@ -12,7 +12,6 @@ public class AngloTrainer {
 	private int maxLength;
 	private int numberOfWords;
 	private String randLetters;
-	private String word;
 
 	public AngloTrainer(String dictionaryFile) throws IOException {
 		wordList = new TreeSet();
@@ -21,7 +20,7 @@ public class AngloTrainer {
 		numberOfWords = 0;
 
 		loadDictionary(dictionaryFile);
-		randLetters = "byota";//randomLetters(maxLength);
+		randLetters = randomLetters(maxLength);
 		output();
 		userInput();
 
@@ -51,8 +50,10 @@ public class AngloTrainer {
 					break;
 				}
 				wordList.add(word);
+				
 			/*	if(word.length() > maxLength)
 					maxLength = word.length();*/
+
 				numberOfWords++;
 			}
 		} catch(FileNotFoundException e) {
@@ -112,20 +113,28 @@ public class AngloTrainer {
 	}
 
 	private void userInput(){
-		Scanner inputScanner = new Scanner(System.in);
-		while(true){
-			String inputString = inputScanner.nextLine();
-			String sortedInput = sort(inputString);
-			String sortedRandLetters;
-			sortedRandLetters = sort(randLetters);
+		try {
+			Scanner inputScanner = new Scanner(System.in);
+			while (true) {
+				String inputString = inputScanner.nextLine();
+				String sortedInput = sort(inputString);
+				String sortedRandLetters;
+				sortedRandLetters = sort(randLetters);
 			/*System.out.println(sortedRandLetters);
 			System.out.println(sortedInput);*/
-			if(includes(sortedRandLetters, sortedInput) && wordList.contains(inputString)) {
-				System.out.println("Ok!");
-			} else {
-				dumpDict();
-				break;
+				if (includes(sortedRandLetters, sortedInput) && wordList.contains(inputString)) {
+					System.out.println("Ok!");
+				} else if (includes(sortedRandLetters, sortedInput)) {
+					System.out.println("Your suggestion was not found in the dictionary.\nI found:");
+					dumpDict();
+					break;
+				} else {
+					System.out.println("error lol u suck\nTry again\n");
+
+				}
 			}
+		}catch (NoSuchElementException e){
+			e.printStackTrace();
 		}
 	}
 
