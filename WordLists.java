@@ -2,14 +2,43 @@
 // Version: 
 // Date:	
 
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
+import java.util.*;
 
 public class WordLists {
 	private Reader in = null;
+	private Map<String, Integer> textMap;
 
 	public WordLists(String inputFileName) {
-	    // ... define!
+		textMap = new TreeMap<>();
+		try{
+			in = new FileReader(inputFileName);
+			getText();
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		}
+		computeWordFrequencies();
+		computeFrequencyMap();
+		computeBackwardsOrder();
+	}
+
+	private void getText(){
+		try{
+			while (true){
+				String word = getWord();
+				if (word != null) {
+					if(textMap.containsKey(word)) {
+						textMap.put(word, textMap.get(word) + 1);
+					}else {
+						textMap.put(word, 1);
+					}
+				}else {
+					break;
+				}
+			}
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	private boolean isPunctuationChar(char c) {
@@ -45,6 +74,7 @@ public class WordLists {
 			}
 		}
 	}
+
 	
 	private String reverse(String s) {
 	    // define!
@@ -52,17 +82,47 @@ public class WordLists {
 	}
 	
 	private void computeWordFrequencies() {
-          // define!
+		try{
+			BufferedWriter outStream = new BufferedWriter(new PrintWriter("alfaSorted.txt"));
+
+			for (String s: textMap.keySet()) {
+				outStream.write(s + "		" + textMap.get(s) +"\n");
+			}
+			outStream.close();
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+
 	}
 	
 
 	private void computeFrequencyMap() {
-          // define!
-	}
+		TreeMap<Integer, TreeSet<String>> frequencyMap = new TreeMap<>((o1, o2) -> o1 > o2 ? -1: o1 < o2 ? 1: 0);
+		try{
+			BufferedWriter outStream = new BufferedWriter(new PrintWriter("frequencySorted.txt"));
+
+			for (Map.Entry<String,Integer> s: textMap.entrySet()) {
+				if (!frequencyMap.containsKey(s.getValue())){
+					frequencyMap.put(s.getValue(), new TreeSet<>(Collections.singleton(s.getKey())));
+				}else {
+					frequencyMap.get(s.getValue()).add(s.getKey());
+				}
+			}
+			for(Map.Entry<Integer, TreeSet<String>> e: frequencyMap.entrySet()){
+				outStream.write(e.getKey() +":\n");
+				for(String word: e.getValue()){
+					outStream.write("		" + word + "\n");
+				}
+			}
+
+			outStream.close();
+		}catch (IOException e){
+			e.printStackTrace();
+		}	}
 	
 
 	private void computeBackwardsOrder() {
-	    // define!
+
 	}
 
 	public static void main(String[] args) throws IOException {
