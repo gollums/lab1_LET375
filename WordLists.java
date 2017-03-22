@@ -79,7 +79,6 @@ public class WordLists {
 	private String reverse(String s) {
 		String out = "";
 		String[] reversed = s.split("");
-		//System.out.println(reversed.length);
 		if (reversed.length > 1){
 			for(int i = reversed.length-1; i>=0; i--){
 				out+=reversed[i];
@@ -127,7 +126,8 @@ public class WordLists {
 			outStream.close();
 		}catch (IOException e){
 			e.printStackTrace();
-		}	}
+		}
+	}
 	
 
 	private void computeBackwardsOrder() {

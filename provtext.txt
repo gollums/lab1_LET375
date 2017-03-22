@@ -26,7 +26,7 @@ the network.
 Given this list there seem to be two possible approaches to presenting Java as a
 first teaching language. The first is immediately attractive: start at point 3; go
 straight into GUI, multimedia, applets and the whole network environment,
-thereby catching the students’ interest and showing them how modern and
+thereby catching the studentsï¿½ interest and showing them how modern and
 different Java really is. The second approach is to start at the beginning, laying a
 sound foundation of basic concepts, and then moving on to the newer aspects.
 My answer to the dilemma, embodied in the textbook Java Gently, does
@@ -38,7 +38,7 @@ Preface 2
 through all the background first is a sound policy, but can be both boring and
 overwhelming.
 A gentle but powerful approach
-The approach I have devised is a middle ground, which hinges on Java’s two main
+The approach I have devised is a middle ground, which hinges on Javaï¿½s two main
 selling points: it is network-enabled but it is small and safe. So we start off with
 programs which show how the web is used, but then move straight into covering
 the basic concepts. Because Java has a smaller number of constructs than Pascal
@@ -49,28 +49,28 @@ already encountered classes, objects, instantiation and inheritance, and know ho
 to handle them.
 Approach is not everything, however, and I favour the use of three other
 tried and tested teaching techniques:
-• diagrams everywhere,
-• explanation by example,
-• self-check quizzes and problems after every chapter.
+ï¿½ diagrams everywhere,
+ï¿½ explanation by example,
+ï¿½ self-check quizzes and problems after every chapter.
 There are three kinds of diagrams one can use
-• algorithm diagrams which show the flow of small programs, and also
+ï¿½ algorithm diagrams which show the flow of small programs, and also
 serve to illustrate new concepts such as exceptions and multithreading;
-• class diagrams which show the structure of the program at the class
+ï¿½ class diagrams which show the structure of the program at the class
 level, while still revealing the basic components such as methods and
 variables and the interaction between them;
-• form diagrams which show the syntax of each new Java construct in a
+ï¿½ form diagrams which show the syntax of each new Java construct in a
 way which mirrors its usage in practice.
 Each example should be carefully chosen so that it both illustrates the feature
 which has just been introduced, and also solves a real problem in the best possible
-Java style. Examples should also have a ‘real world’ flavour, wich reinforces the
-need for a programmer to understand the user’s problem, and to write programs in
+Java style. Examples should also have a ï¿½real worldï¿½ flavour, wich reinforces the
+need for a programmer to understand the userï¿½s problem, and to write programs in
 a user-friendly way. As soon as a new feature is introduced, it becomes part of the
 repertoire of the programmer, and can re-emerge in subsequent examples when
 needed. As the student matures, the examples can get longer and more
 challenging.
 Teaching programming vs teaching Java
 For a first year course, it is no longer sufficient to just teach a language. The
-expectation of today’s computer users is that the whole computing milieu will
+expectation of todayï¿½s computer users is that the whole computing milieu will
 assist in the solution of day-to-day problems. In addition to explaining syntax and
 the construction of a well-formed program, a programming course of the 1990s
 has to include techniques for problem solving.
@@ -81,12 +81,12 @@ appropriate technique is selected from those previously discussed, and then we
 proceed to algorithm development. As an additional aid, algorithms are illustrated
 with structured diagrams, and important techniques are discussed, highlighted, and
 identified for reuse later on. The important programming paradigms of:
-• structured programming,
-• object-oriented programming,
-• class design,
-• abstraction,
-• software reuse, and
-• generality
+ï¿½ structured programming,
+ï¿½ object-oriented programming,
+ï¿½ class design,
+ï¿½ abstraction,
+ï¿½ software reuse, and
+ï¿½ generality
 all receive attention, and examples are carefully chosen to show how these
 techniques can encourage correctness and efficiency. For example, there are
 discussions on guidlines for class design, on the relationship between arrays and
@@ -107,26 +107,26 @@ motivation and understanding, and that students are able to get ahead and
 accomplish more in a shorter time, without compromising their assimilation of the
 principles of Java and programming. The key points of the order of all the material
 are:
-• Rapid entry to genuine programming problems;
-• The power of object-oriented programming presented with realistic
+ï¿½ Rapid entry to genuine programming problems;
+ï¿½ The power of object-oriented programming presented with realistic
 examples from the start;
-• Exceptions introduced early on and explained as a natural way to
+ï¿½ Exceptions introduced early on and explained as a natural way to
 control flow between classes;
-• “No fuss” discussion of features that are simple in Java (such as class
+ï¿½ ï¿½No fussï¿½ discussion of features that are simple in Java (such as class
 structure) but in-depth treatment of potentially difficult topics (such as
 coercion and cloning);
 Preface 4
-• Hash tables grouped with arrays to show their efficacy in providing for
+ï¿½ Hash tables grouped with arrays to show their efficacy in providing for
 non-integer indices;
-• A custom-made input package which is used from chapter 4, and
+ï¿½ A custom-made input package which is used from chapter 4, and
 explained in full in chapter 6 once strings tokenisers have been covered;
-• Introduction to object references and their implications through the
+ï¿½ Introduction to object references and their implications through the
 development of a linked list class;
-• Almost full coverage of the awt facilities, but geared towards examples;
-• Applets presented through a viewer and a browser, and the differences
+ï¿½ Almost full coverage of the awt facilities, but geared towards examples;
+ï¿½ Applets presented through a viewer and a browser, and the differences
 between applets and applications explained once the student can
 genuinely appreciate the issues;
-• Multithreading done before socket programming, so that the socket
+ï¿½ Multithreading done before socket programming, so that the socket
 programs can illustrate multiple client-server operations.
 Conclusion
 Java is here to stay. In North America and Europe it is taling over as fisrt teaching
