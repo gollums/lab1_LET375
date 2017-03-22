@@ -112,7 +112,7 @@ public class AngloTrainer {
 		return out;
 	}
 
-	private void userInput(){
+	private void userInput()throws NoSuchElementException{
 		try {
 			Scanner inputScanner = new Scanner(System.in);
 			while (true) {
@@ -120,21 +120,21 @@ public class AngloTrainer {
 				String sortedInput = sort(inputString);
 				String sortedRandLetters;
 				sortedRandLetters = sort(randLetters);
-			/*System.out.println(sortedRandLetters);
-			System.out.println(sortedInput);*/
 				if (includes(sortedRandLetters, sortedInput) && wordList.contains(inputString)) {
 					System.out.println("Ok!");
 				} else if (includes(sortedRandLetters, sortedInput)) {
-					System.out.println("Your suggestion was not found in the dictionary.\nI found:");
-					dumpDict();
-					break;
+					throw new Exception("Your suggestion was not found in the dictionary.\nI found:");
 				} else {
-					System.out.println("error lol u suck\nTry again\n");
-
+					throw new NoSuchElementException("Your suggestion was misspelled");
 				}
 			}
 		}catch (NoSuchElementException e){
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			dumpDict();
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+			dumpDict();
+
 		}
 	}
 
