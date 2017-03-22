@@ -56,11 +56,13 @@ public class AngloTrainer {
 
 				numberOfWords++;
 			}
+			inStream.close();
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private String randomLetters( int length ) {
