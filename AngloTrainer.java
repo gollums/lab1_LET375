@@ -12,31 +12,37 @@ public class AngloTrainer {
 	private int maxLength;
 	private int numberOfWords;
 	private String randLetters;
+	private String word;
 
 	public AngloTrainer(String dictionaryFile) throws IOException {
 		wordList = new TreeSet();
 		randomGenerator = new Random();
-		maxLength = 0;
+		maxLength = 5;
 		numberOfWords = 0;
 
 		loadDictionary(dictionaryFile);
-		randLetters = randomLetters(maxLength);
+		randLetters = "byota";//randomLetters(maxLength);
 		output();
 		userInput();
 
-		// ... define!
 	}
 
 	// use this to verify loadDictionary
 	private void dumpDict() {
-
-		Iterator<String> setIterator = wordList.iterator();
-
-		while(setIterator.hasNext()){
-			System.out.println(setIterator.next());
-		}
 		// Print out the dictionary at the screen.
-		// ... define!
+		Iterator<String> setIterator = wordList.iterator();
+		String sortedRandLetters = randLetters;
+		
+		while(setIterator.hasNext()){
+			String sortedString = sort(setIterator.next());
+
+			if(includes(sortedRandLetters,sortedString)){
+				System.out.println(setIterator.next());
+			}
+
+		}
+
+
 	}
 
 	private void loadDictionary( String fileName ) {
@@ -49,8 +55,8 @@ public class AngloTrainer {
 					break;
 				}
 				wordList.add(word);
-				if(word.length() > maxLength)
-					maxLength = word.length();
+			/*	if(word.length() > maxLength)
+					maxLength = word.length();*/
 				numberOfWords++;
 			}
 		} catch(FileNotFoundException e) {
@@ -99,23 +105,30 @@ public class AngloTrainer {
 	}
 
 	private String sort(String s){
+		String out = "";
 		String[] toBeSorted = s.split("");
 		Arrays.sort(toBeSorted);
 
-		return Arrays.toString(toBeSorted);
+		for(int i = 0; i<toBeSorted.length;i++){
+			out+=toBeSorted[i];
+		}
+
+		return out;
 	}
 
 	private void userInput(){
 		Scanner inputScanner = new Scanner(System.in);
 		while(true){
 			String inputString = inputScanner.nextLine();
+			String sortedInput = sort(inputString);
 			String sortedRandLetters;
 			sortedRandLetters = sort(randLetters);
-			System.out.println(sortedRandLetters);
-			if(includes(sortedRandLetters, inputString) && wordList.contains(inputString)) {
+			/*System.out.println(sortedRandLetters);
+			System.out.println(sortedInput);*/
+			if(includes(sortedRandLetters, sortedInput) && wordList.contains(inputString)) {
 				System.out.println("Ok!");
 			} else {
-
+				dumpDict();
 				break;
 			}
 		}
@@ -153,10 +166,10 @@ public class AngloTrainer {
 		System.out.println(includes(null,"abc"));	//f
 		System.out.println(includes("",null));		//t
 		System.out.println(includes("abc",null));   //t
+
 	}
 
 	public static void main(String[] args) throws IOException {
-		new AngloTrainer("/home/nightmare/IdeaProjects/AlgorythmAndDataStructuresLab1/src/dictionary.txt");
-		// ... define!
+		new AngloTrainer("/Users/gollum/Documents/Programing/Java_Dev/LET375/lab1/dictionary.txt");
 	}
 }
