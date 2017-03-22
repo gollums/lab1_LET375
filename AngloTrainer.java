@@ -30,19 +30,15 @@ public class AngloTrainer {
 	// use this to verify loadDictionary
 	private void dumpDict() {
 		// Print out the dictionary at the screen.
-		Iterator<String> setIterator = wordList.iterator();
-		String sortedRandLetters = randLetters;
-		
-		while(setIterator.hasNext()){
-			String sortedString = sort(setIterator.next());
+        for (Object s:wordList) {
 
-			if(includes(sortedRandLetters,sortedString)){
-				System.out.println(setIterator.next());
-			}
-
-		}
-
-
+            String sortedRandLetters = sort(randLetters);
+            String sortedString = sort((String) s);
+            
+            if(includes(sortedRandLetters,sortedString)){
+                System.out.println((String) s);
+            }
+        }
 	}
 
 	private void loadDictionary( String fileName ) {
@@ -112,7 +108,6 @@ public class AngloTrainer {
 		for(int i = 0; i<toBeSorted.length;i++){
 			out+=toBeSorted[i];
 		}
-
 		return out;
 	}
 
