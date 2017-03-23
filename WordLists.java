@@ -132,7 +132,6 @@ public class WordLists {
 
 	private void computeBackwardsOrder() {
 		TreeSet<String> reversedString = new TreeSet<>();
-
 		try{
 			BufferedWriter outStream = new BufferedWriter(new PrintWriter("backwardsSorted.txt"));
 			for(String s: textMap.keySet()){
