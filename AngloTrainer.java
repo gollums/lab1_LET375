@@ -51,10 +51,10 @@ public class AngloTrainer {
 				}
 				wordList.add(word);
 				
-			/*	if(word.length() > maxLength)
-					maxLength = word.length();*/
+				if(word.length() > maxLength)
+					maxLength = word.length();
 
-				numberOfWords++;
+				numberOfWords = wordList.size();
 			}
 			inStream.close();
 		} catch(FileNotFoundException e) {
