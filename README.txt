@@ -6,3 +6,4 @@ Johan Martinson
 Joakim Willard
 
 Uppgift 1
+För att vi ska kunna använda slumpgeneratorn som är given så skapar vi en randomGenerator av typ Random.

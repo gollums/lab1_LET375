@@ -17,9 +17,6 @@ public class WordLists {
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
-		computeWordFrequencies();
-		computeFrequencyMap();
-		computeBackwardsOrder();
 	}
 
 	private void getText(){
