@@ -176,6 +176,6 @@ public class AngloTrainer {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new AngloTrainer("/Users/gollum/Documents/Programing/Java_Dev/LET375/lab1/dictionary.txt");
+		new AngloTrainer("/Users/gollum/Documents/Programing/Java_Dev/LET375/lab1/dictionary.txt"); //change to your dictionary.txt path
 	}
 }
